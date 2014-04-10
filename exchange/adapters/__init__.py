@@ -62,8 +62,8 @@ class BaseAdapter(object):
     def _get_rate_through_usd(self, source, target, usd_rates):
         # from: https://openexchangerates.org/documentation#how-to-use
         # gbp_hkd = usd_hkd * (1 / usd_gbp)
-        usd_source = usd_rates[source]
-        usd_target = usd_rates[target]
+        usd_source = Decimal(usd_rates[source])
+        usd_target = Decimal(usd_rates[target])
         rate = usd_target * (Decimal(1.0) / usd_source)
         rate = rate.quantize(Decimal('0.123456'))  # round to 6 decimal places
         return rate
